@@ -1,0 +1,125 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-grafite-950: #0b0b0d;
+  --color-grafite-900: #0f0f11;
+  --color-grafite-850: #141418;
+  --color-grafite-800: #1a1a1f;
+  --color-grafite-700: #26262d;
+  --color-grafite-600: #34343c;
+  --color-dpj: #c4161c;
+  --color-dpj-escuro: #b71216;
+  --color-dpj-claro: #e0262d;
+  --color-prata: #c3c7ca;
+  --color-texto: #a1a1aa;
+
+  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-grafite-900 font-sans text-white antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    @apply bg-dpj text-white;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-dpj-claro);
+    outline-offset: 3px;
+  }
+}
+
+@utility container-dpj {
+  @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
+}
+@utility titulo {
+  @apply font-display font-bold uppercase leading-[0.95] tracking-tight text-white;
+}
+@utility rotulo {
+  @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-dpj-claro;
+  &::before {
+    content: '';
+    @apply h-px w-6 bg-dpj-claro;
+  }
+}
+@utility cartao {
+  @apply rounded-2xl border border-white/8 bg-grafite-850;
+}
+@utility btn {
+  @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold transition duration-200 active:scale-[0.98];
+}
+@utility btn-primario {
+  @apply btn bg-dpj text-white shadow-[0_10px_30px_-10px_rgba(196,22,28,0.7)] hover:bg-dpj-claro;
+}
+@utility btn-secundario {
+  @apply btn border border-white/15 bg-white/5 text-white hover:border-white/30 hover:bg-white/10;
+}
+
+/* Animação de entrada ao rolar */
+.revelar {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.revelar.visivel {
+  opacity: 1;
+  transform: none;
+}
+
+/* Brilhos vermelhos de fundo (gradiente é muito mais leve que filter: blur no celular) */
+.brilho-25 {
+  background: radial-gradient(closest-side, rgba(196, 22, 28, 0.28), transparent);
+}
+.brilho-15 {
+  background: radial-gradient(closest-side, rgba(196, 22, 28, 0.18), transparent);
+}
+.brilho-10 {
+  background: radial-gradient(closest-side, rgba(196, 22, 28, 0.13), transparent);
+}
+
+.sem-scrollbar {
+  scrollbar-width: none;
+}
+.sem-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.grao {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+@keyframes deslizar {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.faixa-animada {
+  animation: deslizar 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .revelar {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .faixa-animada {
+    animation: none;
+  }
+}
