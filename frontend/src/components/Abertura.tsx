@@ -15,12 +15,14 @@ export function Abertura() {
             Personal trainer em São Carlos e consultoria para todo o Brasil
           </p>
           <h1 className="titulo mt-6 text-[3.4rem] sm:text-7xl lg:text-[5.5rem]">
-            Não é falta de esforço.
-            <span className="block text-dpj-claro">É falta de direção.</span>
+            Do primeiro treino
+            <span className="block text-dpj-claro">ao próximo nível.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-texto sm:text-lg">
-            Avaliação física e postural completa, treino individualizado no <strong className="text-white">DPJ App</strong>,
-            plano alimentar e correção de execução pelo WhatsApp. Um método por fases para você parar de treinar no escuro.
+            Sou o <strong className="text-white">Deusmar Junqueira</strong>, personal trainer em São Carlos e fundador da DPJ
+            Consultoria Esportiva. Seja para dar o primeiro passo ou para destravar a evolução de quem já treina, eu te acompanho
+            de perto: avaliação física e postural, treino individualizado no <strong className="text-white">DPJ App</strong> e
+            suporte direto pelo WhatsApp.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

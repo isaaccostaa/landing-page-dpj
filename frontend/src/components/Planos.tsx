@@ -4,7 +4,7 @@ import { Cabecalho, Revelar } from './ui'
 
 export function Planos({ onAssinar }: { onAssinar: (plano: PlanoId) => void }) {
   return (
-    <section id="planos" className="relative overflow-hidden py-24 lg:py-32">
+    <section id="planos" className="relative overflow-hidden pb-16 pt-16 lg:pb-24 lg:pt-24">
       <div className="pointer-events-none absolute left-1/2 top-40 h-[500px] w-[700px] -translate-x-1/2 brilho-10" />
       <div className="container-dpj relative">
         <Cabecalho

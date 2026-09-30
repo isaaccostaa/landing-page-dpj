@@ -65,6 +65,20 @@
     <!-- Meta Pixel: colar aqui o código do pixel quando a conta de anúncios estiver pronta -->
   </head>
   <body>
+    <!-- Declaração do formulário para o Netlify Forms (o envio real é feito pelo React) -->
+    <form name="cadastro" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input name="bot-field" />
+      <input name="nome_completo" />
+      <input name="email" />
+      <input name="celular" />
+      <input name="plano" />
+      <input name="consentimento" />
+      <input name="utm_source" />
+      <input name="utm_medium" />
+      <input name="utm_campaign" />
+      <input name="utm_content" />
+      <input name="origem_pagina" />
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

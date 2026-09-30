@@ -13,12 +13,12 @@ export function Resultados() {
   const [angulo, setAngulo] = useState<(typeof ANGULOS)[number]['id']>('frente')
 
   return (
-    <section id="resultados" className="border-y border-white/8 bg-grafite-950 py-24 lg:py-32">
+    <section id="resultados" className="border-y border-white/8 bg-grafite-950 pb-16 pt-16 lg:pb-24 lg:pt-24">
       <div className="container-dpj">
         <Cabecalho
           rotulo="Resultados reais"
           titulo={<>Evolução que <span className="text-dpj-claro">aparece</span> e que se mede</>}
-          texto="Fotos e números de alunos da consultoria, publicados com autorização."
+          texto="Resultados de alunos acompanhados pela consultoria, registrados em avaliações periódicas de composição corporal, medidas e fotos padronizadas."
         />
 
         <div className="mt-14 grid gap-6 lg:grid-cols-[1.4fr_0.6fr]">
@@ -59,8 +59,8 @@ export function Resultados() {
           </Revelar>
 
           <Revelar atraso={120} className="mx-auto w-full max-w-[320px] lg:max-w-none">
-            <VideoVertical arquivo="antes-depois" titulo="Deusmar explica o resultado de uma aluna" className="border border-white/10" />
-            <p className="mt-3 text-sm text-texto">O Deusmar explica, passo a passo, o resultado de uma aluna.</p>
+            <VideoVertical arquivo="antes-depois" titulo="Análise do resultado de uma aluna" className="border border-white/10" />
+            <p className="mt-3 text-sm text-texto">Neste vídeo, eu apresento a evolução de uma aluna e explico as estratégias que levaram a esse resultado.</p>
           </Revelar>
         </div>
 

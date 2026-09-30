@@ -31,8 +31,17 @@ function lerUtms(): Record<string, string> {
 
 export class ErroCadastro extends Error {}
 
+/**
+ * Onde o cadastro é salvo:
+ * - Em desenvolvimento (npm run dev): backend Python em /api/leads.
+ * - No site publicado na Netlify: Netlify Forms (formulário "cadastro" declarado no index.html).
+ *   Para voltar a usar o backend Python em produção, gere o build com VITE_CADASTRO=api.
+ */
+const USAR_NETLIFY_FORMS = import.meta.env.PROD && import.meta.env.VITE_CADASTRO !== 'api'
+
 export async function enviarCadastro(dados: DadosCadastro) {
   const corpo = { ...dados, ...lerUtms(), origem_pagina: window.location.href.slice(0, 300) }
+  if (USAR_NETLIFY_FORMS) return enviarNetlifyForms(corpo)
   let resp: Response
   try {
     resp = await fetch('/api/leads', {
@@ -49,6 +58,26 @@ export async function enviarCadastro(dados: DadosCadastro) {
     throw new ErroCadastro(msg ?? 'Não foi possível enviar seu cadastro. Tente novamente.')
   }
   return (await resp.json()) as { id: string; nome: string; plano: PlanoId }
+}
+
+async function enviarNetlifyForms(corpo: DadosCadastro & Record<string, unknown>) {
+  const campos = new URLSearchParams({ 'form-name': 'cadastro' })
+  for (const [chave, valor] of Object.entries(corpo)) {
+    if (valor !== undefined && valor !== null) campos.append(chave, String(valor))
+  }
+  campos.set('celular', corpo.celular.replace(/\D/g, ''))
+  let resp: Response
+  try {
+    resp = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: campos.toString(),
+    })
+  } catch {
+    throw new ErroCadastro('Sem conexão. Verifique sua internet e tente novamente.')
+  }
+  if (!resp.ok) throw new ErroCadastro('Não foi possível enviar seu cadastro. Tente novamente.')
+  return { id: crypto.randomUUID(), nome: corpo.nome_completo, plano: corpo.plano }
 }
 
 export function mascararCelular(valor: string) {

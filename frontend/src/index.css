@@ -106,8 +106,66 @@
     transform: translateX(-50%);
   }
 }
+/* Seta "arraste para o lado" das dicas: cutuca para a direita e emite um pulso vermelho */
+@keyframes cutucar {
+  0%,
+  100% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+@keyframes pulso {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+/* Seta discreta "tem mais conteúdo abaixo" */
+@keyframes descer {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+.seta-descer {
+  animation: descer 1.8s ease-in-out infinite;
+}
+
+.seta-cutucar {
+  animation: cutucar 1.2s ease-in-out infinite;
+}
+.seta-pulso::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid var(--color-dpj-claro);
+  animation: pulso 1.8s ease-out infinite;
+  pointer-events: none;
+}
+
+/* Faixa de depoimentos: desliza continuamente e pausa ao tocar/passar o mouse para leitura */
 .faixa-animada {
-  animation: deslizar 40s linear infinite;
+  animation: deslizar 45s linear infinite;
+  will-change: transform;
+}
+.faixa-animada:hover,
+.faixa-animada:active {
+  animation-play-state: paused;
+}
+@media (max-width: 767px) {
+  .faixa-animada {
+    animation-duration: 38s;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -119,7 +177,8 @@
     transform: none;
     transition: none;
   }
+  /* Movimento reduzido: a faixa continua passando, porém mais devagar */
   .faixa-animada {
-    animation: none;
+    animation-duration: 80s;
   }
 }

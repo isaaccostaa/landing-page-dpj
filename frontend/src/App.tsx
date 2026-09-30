@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Abertura } from './components/Abertura'
 import { Cadastro } from './components/Cadastro'
 import { ChamadaFinal, Dicas, Duvidas, Rodape, WhatsAppFlutuante } from './components/Final'
+import { IndicadorRolagem } from './components/IndicadorRolagem'
 import { AppDPJ, Avaliacao, Metodo } from './components/Metodo'
 import { Planos } from './components/Planos'
 import { Resultados } from './components/Resultados'
@@ -34,6 +35,7 @@ export default function App() {
       </main>
       <Rodape />
       <WhatsAppFlutuante />
+      <IndicadorRolagem />
       <Cadastro plano={plano} onFechar={() => setPlano(null)} onTrocarPlano={setPlano} />
     </>
   )

@@ -10,7 +10,7 @@ const PILARES = [
 
 export function TreinoHibrido() {
   return (
-    <section id="treino-hibrido" className="relative overflow-hidden py-24 lg:py-32">
+    <section id="treino-hibrido" className="relative overflow-hidden pb-16 pt-16 lg:pb-24 lg:pt-24">
       <div className="pointer-events-none absolute right-0 top-1/3 h-[420px] w-[420px] brilho-15" />
       <div className="container-dpj relative grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <Revelar className="mx-auto w-full max-w-[340px]">
@@ -21,7 +21,7 @@ export function TreinoHibrido() {
           <Cabecalho
             rotulo="Treino Híbrido"
             titulo={<>Forte na academia. <span className="text-dpj-claro">Rápido na rua.</span></>}
-            texto="O treino híbrido combina musculação e condicionamento no mesmo planejamento. É para quem quer um corpo bonito e que também performa: correr melhor, subir o ritmo e ter energia para a vida."
+            texto="O treino híbrido integra treinamento de força e condicionamento cardiorrespiratório em um único planejamento. É indicado para quem busca estética e desempenho ao mesmo tempo: mais força, melhor capacidade aeróbia e mais disposição no dia a dia."
           />
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3">

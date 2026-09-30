@@ -2,15 +2,14 @@ import { Check } from 'lucide-react'
 import { Revelar, VideoVertical } from './ui'
 
 const PILARES = [
-  'Treino individualizado, montado a partir da sua avaliação',
-  'Execução corrigida por vídeo, sem achismo',
-  'Evolução medida com dados, não só com a balança',
-  'Acompanhamento próximo, com vagas limitadas por mês',
+  'Prescrevo um treino individualizado com base na sua avaliação física e postural',
+  'Acompanho e corrijo a execução dos seus exercícios por vídeo',
+  'Monitoro a sua evolução com avaliações periódicas de composição corporal e medidas',
 ]
 
 export function Sobre() {
   return (
-    <section id="sobre" className="py-24 lg:py-32">
+    <section id="sobre" className="pb-16 pt-24 lg:pb-24 lg:pt-32">
       <div className="container-dpj grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
         <Revelar className="order-2 lg:order-1">
           <div className="grid grid-cols-5 gap-3 sm:gap-4">
@@ -25,22 +24,23 @@ export function Sobre() {
               />
             </div>
             <div className="col-span-2">
-              <VideoVertical arquivo="antes-depois-deusmar" titulo="A transformação do próprio Deusmar" />
-              <p className="mt-2 text-xs text-texto">A transformação do próprio Deusmar</p>
+              <VideoVertical arquivo="antes-depois-deusmar" titulo="A minha própria transformação" />
+              <p className="mt-2 text-xs text-texto">A minha própria transformação</p>
             </div>
           </div>
         </Revelar>
 
         <div className="order-1 lg:order-2">
           <Revelar>
-            <span className="rotulo">Quem vai te acompanhar</span>
+            <span className="rotulo">Sobre</span>
             <h2 className="titulo mt-4 text-4xl sm:text-5xl lg:text-6xl">
-              Ele já esteve <span className="text-dpj-claro">do outro lado</span>
+              Eu não só passo treino. <span className="text-dpj-claro">Eu acompanho você.</span>
             </h2>
             <p className="mt-5 text-base leading-relaxed text-texto sm:text-lg">
-              O Deusmar também já precisou transformar o próprio corpo. Hoje, à frente da
-              DPJ Consultoria Esportiva, ele usa o que aprendeu na prática e na ciência do treinamento para
-              levar alunos de São Carlos e de outras cidades a resultados que dá para medir.
+              Meu trabalho começa entendendo o seu corpo, a sua rotina e o seu objetivo. A partir disso, monto um plano
+              por fases e ajusto cada etapa conforme você evolui. Eu também precisei transformar o meu próprio corpo,
+              então sei, na prática, o que funciona. Hoje, pela DPJ Consultoria Esportiva, acompanho alunos em São Carlos
+              e em outras cidades rumo a resultados que dá para medir.
             </p>
           </Revelar>
           <ul className="mt-8 grid gap-3">

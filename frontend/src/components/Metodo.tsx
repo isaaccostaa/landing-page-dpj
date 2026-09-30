@@ -11,37 +11,17 @@ const MEDIDAS = [
 
 export function Avaliacao() {
   return (
-    <section id="avaliacao" className="relative border-y border-white/8 bg-grafite-950 py-24 lg:py-32">
-      <div className="container-dpj grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
-        <div>
-          <Cabecalho
-            rotulo="Porta de entrada"
-            titulo={<>Avaliação física e <span className="text-dpj-claro">postural</span> completa</>}
-            texto="Todo acompanhamento começa aqui. Antes de prescrever qualquer exercício, o Deusmar entende como o seu corpo está hoje, presencialmente, no consultório em São Carlos."
-          />
-          <Revelar atraso={100} className="mt-8 rounded-2xl border border-white/8 bg-grafite-850 p-5">
-            <div className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-dpj-claro" />
-              <div className="text-sm">
-                <p className="font-semibold text-white">{EMPRESA.endereco.linha1}</p>
-                <p className="text-texto">{EMPRESA.endereco.linha2}</p>
-                <p className="text-texto">{EMPRESA.endereco.cidade}</p>
-                <a href={EMPRESA.endereco.mapa} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block font-medium text-dpj-claro underline-offset-4 hover:underline">
-                  Abrir no mapa
-                </a>
-              </div>
-            </div>
-          </Revelar>
-          <Revelar atraso={150} className="mt-6">
-            <a href={WHATSAPP.avaliacao} target="_blank" rel="noopener noreferrer" className="btn-primario h-14 w-full px-7 text-base sm:w-auto">
-              <IconeWhatsApp />
-              Agendar minha avaliação
-            </a>
-            <p className="mt-3 text-xs text-texto">Incluída nos planos Bimestral e Semestral.</p>
-          </Revelar>
-        </div>
+    <section id="avaliacao" className="relative border-y border-white/8 bg-grafite-950 pb-16 pt-16 lg:pb-24 lg:pt-24">
+      <div className="container-dpj">
+        {/* 1. Texto de apresentação */}
+        <Cabecalho
+          rotulo="Porta de entrada"
+          titulo={<>Avaliação física e <span className="text-dpj-claro">postural</span> completa</>}
+          texto="É aqui que todo acompanhamento começa. Antes de prescrever qualquer exercício, eu preciso entender como o seu corpo está hoje. Por isso, faço essa avaliação pessoalmente, no meu consultório em São Carlos."
+        />
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        {/* 2. O que é avaliado */}
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {MEDIDAS.map((m, i) => (
             <Revelar key={m.titulo} atraso={i * 80} className="cartao p-6">
               <m.icone className="h-7 w-7 text-dpj-claro" strokeWidth={1.6} />
@@ -50,6 +30,28 @@ export function Avaliacao() {
             </Revelar>
           ))}
         </div>
+
+        {/* 3. Onde fica + agendamento */}
+        <Revelar className="mt-6 flex flex-col gap-6 rounded-2xl border border-white/8 bg-grafite-850 p-5 sm:p-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-start gap-3">
+            <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-dpj-claro" />
+            <div className="text-sm">
+              <p className="font-semibold text-white">{EMPRESA.endereco.linha1}</p>
+              <p className="text-texto">{EMPRESA.endereco.linha2}</p>
+              <p className="text-texto">{EMPRESA.endereco.cidade}</p>
+              <a href={EMPRESA.endereco.mapa} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block font-medium text-dpj-claro underline-offset-4 hover:underline">
+                Abrir no mapa
+              </a>
+            </div>
+          </div>
+          <div className="md:text-right">
+            <a href={WHATSAPP.avaliacao} target="_blank" rel="noopener noreferrer" className="btn-primario h-14 w-full px-7 text-base md:w-auto">
+              <IconeWhatsApp />
+              Agendar minha avaliação
+            </a>
+            <p className="mt-3 text-xs text-texto">Incluída nos planos Bimestral e Semestral.</p>
+          </div>
+        </Revelar>
       </div>
     </section>
   )
@@ -64,11 +66,11 @@ const PASSOS = [
 
 export function Metodo() {
   return (
-    <section id="metodo" className="py-24 lg:py-32">
+    <section id="metodo" className="pb-16 pt-16 lg:pb-24 lg:pt-24">
       <div className="container-dpj">
         <Cabecalho
           rotulo="O método DPJ"
-          titulo={<>Quatro passos. <span className="text-dpj-claro">Zero achismo.</span></>}
+          titulo={<>Quatro etapas. <span className="text-dpj-claro">Um método completo.</span></>}
           texto="Um processo claro do primeiro dia até o resultado, com cada etapa medida e ajustada."
         />
         <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -97,7 +99,7 @@ const FUNCOES = [
 
 export function AppDPJ() {
   return (
-    <section id="app" className="relative overflow-hidden border-y border-white/8 bg-grafite-950 py-24 lg:py-32">
+    <section id="app" className="relative overflow-hidden border-y border-white/8 bg-grafite-950 pb-16 pt-16 lg:pb-24 lg:pt-24">
       <div className="pointer-events-none absolute -left-40 bottom-0 h-[480px] w-[480px] brilho-15" />
       <div className="container-dpj relative grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
         <div>

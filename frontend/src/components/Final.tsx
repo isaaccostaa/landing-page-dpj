@@ -5,10 +5,21 @@ import { Cabecalho, IconeInstagram, IconeWhatsApp, Revelar, VideoVertical } from
 
 export function Dicas() {
   const trilho = useRef<HTMLDivElement>(null)
+  const [noFim, setNoFim] = useState(false)
   const rolar = (dir: 1 | -1) => trilho.current?.scrollBy({ left: dir * trilho.current.clientWidth * 0.8, behavior: 'smooth' })
 
+  function aoRolar() {
+    const t = trilho.current
+    if (t) setNoFim(t.scrollLeft + t.clientWidth >= t.scrollWidth - 8)
+  }
+
+  function avancarOuVoltar() {
+    if (noFim) trilho.current?.scrollTo({ left: 0, behavior: 'smooth' })
+    else rolar(1)
+  }
+
   return (
-    <section id="dicas" className="border-y border-white/8 bg-grafite-950 py-24 lg:py-32">
+    <section id="dicas" className="border-y border-white/8 bg-grafite-950 pb-12 pt-16 lg:pb-20 lg:pt-24">
       <div className="container-dpj flex flex-wrap items-end justify-between gap-6">
         <Cabecalho
           rotulo="Aulas gratuitas"
@@ -27,6 +38,7 @@ export function Dicas() {
 
       <div
         ref={trilho}
+        onScroll={aoRolar}
         className="sem-scrollbar mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-5 px-5 pb-2 sm:scroll-px-6 sm:px-6 lg:px-[max(2rem,calc((100vw-72rem)/2+2rem))]"
       >
         {VIDEO_AULAS.map((v) => (
@@ -37,7 +49,26 @@ export function Dicas() {
           </article>
         ))}
       </div>
-      <p className="container-dpj mt-4 text-xs text-texto md:hidden">Arraste para ver mais</p>
+      {/* Celular: seta que convida a arrastar (toque avança; no fim, volta ao início) */}
+      <div className="container-dpj mt-6 md:hidden">
+        <button
+          type="button"
+          onClick={avancarOuVoltar}
+          className="group flex w-full items-center justify-between gap-4 rounded-full border border-dpj/30 bg-dpj/10 py-2 pl-5 pr-2 text-left"
+          aria-label={noFim ? 'Voltar para o primeiro vídeo' : 'Ver próximos vídeos'}
+        >
+          <span className="text-sm font-semibold text-white">
+            {noFim ? 'Voltar ao início' : 'Arraste para ver mais dicas'}
+          </span>
+          <span className="seta-pulso relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-dpj-claro to-dpj-escuro shadow-[0_8px_24px_-6px_rgba(196,22,28,0.8)]">
+            {noFim ? (
+              <ArrowLeft className="h-5 w-5 text-white" strokeWidth={2.5} />
+            ) : (
+              <ArrowRight className="seta-cutucar h-5 w-5 text-white" strokeWidth={2.5} />
+            )}
+          </span>
+        </button>
+      </div>
     </section>
   )
 }
@@ -45,7 +76,7 @@ export function Dicas() {
 export function Duvidas() {
   const [aberta, setAberta] = useState<number | null>(0)
   return (
-    <section id="duvidas" className="py-24 lg:py-32">
+    <section id="duvidas" className="pb-16 pt-12 lg:pb-24 lg:pt-20">
       <div className="container-dpj grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <Cabecalho rotulo="Dúvidas frequentes" titulo={<>Antes de <span className="text-dpj-claro">começar</span></>} texto="Não encontrou sua pergunta? Chame no WhatsApp." />
         <div className="divide-y divide-white/8 border-y border-white/8">
@@ -76,7 +107,7 @@ export function Duvidas() {
 
 export function ChamadaFinal() {
   return (
-    <section className="px-5 pb-24 sm:px-6 lg:pb-32">
+    <section className="px-5 pb-16 sm:px-6 lg:pb-24">
       <Revelar className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-dpj/40 bg-gradient-to-br from-dpj via-dpj-escuro to-[#5c0a0d] px-6 py-16 text-center sm:px-12 lg:py-24">
         <div className="pointer-events-none absolute inset-0 grao opacity-60" />
         <img src="/media/icone-dpj.png" alt="" className="pointer-events-none absolute -right-10 -top-10 h-64 w-64 opacity-10" loading="lazy" />
@@ -102,8 +133,8 @@ export function ChamadaFinal() {
 
 export function Rodape() {
   return (
-    <footer className="border-t border-white/8 bg-grafite-950 pb-28 pt-16 lg:pb-12">
-      <div className="container-dpj grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="border-t border-white/8 bg-grafite-950 pb-24 pt-12 lg:pb-10 lg:pt-16">
+      <div className="container-dpj grid gap-7 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
         <div className="lg:col-span-1">
           <img src="/media/logo-dpj.webp" alt="DPJ Personal Trainer" className="h-10 w-auto" loading="lazy" width={104} height={40} />
           <p className="mt-4 text-sm leading-relaxed text-texto">Avaliação física e postural, consultoria de treino e treino híbrido em São Carlos e online.</p>
@@ -149,7 +180,7 @@ export function Rodape() {
         </div>
       </div>
 
-      <div className="container-dpj mt-12 border-t border-white/8 pt-6 text-xs leading-relaxed text-texto/80">
+      <div className="container-dpj mt-8 border-t border-white/8 pt-5 text-xs leading-relaxed text-texto/80 lg:mt-12">
         <p>
           <strong className="text-prata">{EMPRESA.razaoSocial}</strong> ({EMPRESA.nomeFantasia}) | CNPJ {EMPRESA.cnpj}
         </p>
